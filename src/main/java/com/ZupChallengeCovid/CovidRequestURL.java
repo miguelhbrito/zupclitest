@@ -3,10 +3,7 @@ package com.ZupChallengeCovid;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -19,7 +16,7 @@ public class CovidRequestURL {
         HttpURLConnection conexao = null;
 
         try {
-            URL url = new URL(URL_COVID19_API + URLEncoder.encode(country, "UTF-8").replace("+","%20"));
+            URL url = new URL(URL_COVID19_API + URLEncoder.encode(country, "UTF-8").replace("+", "%20"));
             conexao = (HttpURLConnection) url.openConnection();
             conexao.setRequestMethod("GET");
 
@@ -32,9 +29,10 @@ public class CovidRequestURL {
                     responseMessage.append(inputLine);
                 }
                 inputData.close();
+
                 return responseMessage.toString();
             }
-        }  catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             if (conexao != null) {

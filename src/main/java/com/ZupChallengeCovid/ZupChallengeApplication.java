@@ -6,18 +6,23 @@ public class ZupChallengeApplication {
         String country = null;
         ArgsParameters argsParameters = new ArgsParameters();
 
-        if (args[0].equals("help")) {
-            System.out.println("To use the cli program type \"covid19 -country {country name}\"");
-            return;
-        }
-
         if (args.length > 0) {
-            country = argsParameters.processPassedArgs(args);
-        }
 
-        if (country != null) {
-            CovidRequest covidRequest = new CovidRequest();
-            System.out.println(covidRequest.getStatisticsFromCovid(country));
+            if ("help".equals(args[0])) {
+                System.out.println("To use the cli program type \"covid19 country {country name}\"");
+                return;
+            }
+
+            country = argsParameters.processPassedArgs(args);
+
+            if (country != null && country.length() > 0) {
+                CovidRequest covidRequest = new CovidRequest();
+                System.out.println(covidRequest.getStatisticsFromCovid(country));
+            } else {
+                System.out.println("To use the cli program type \"covid19 country {country name}\"");
+            }
+        } else {
+            System.out.println("To use the cli program type \"covid19 country {country name}\"");
         }
     }
 }
