@@ -28,6 +28,7 @@ public class CovidRequestURL {
                 while ((inputLine = inputData.readLine()) != null) {
                     responseMessage.append(inputLine);
                 }
+
                 inputData.close();
 
                 return responseMessage.toString();
@@ -39,6 +40,6 @@ public class CovidRequestURL {
                 conexao.disconnect();
             }
         }
-        return "GET request failed, response code received is different than 200.\n";
+        return "The GET request failed, response code received is different than 200.\n";
     }
 }
