@@ -20,7 +20,7 @@ Após compilado, crie um arquivo no diretorio */usr/local/bin/* com o conteúdo:
       ```#!/bin/bash
       java -jar {diretorio aonde esta o projeto}/zupTesteJava/target/zupTesteJava-1.jar $@``` <br> <br>
       
-Feito isso, dê prigilegio de execução do arquivo:<br><br>
+Feito isso, dê privilégio de execução para o arquivo:<br><br>
       ``` chmod +x {nome do arquivo} ```<br><br>
       
 Para executar o **CLI** abra o terminal e digite:<br><br>
