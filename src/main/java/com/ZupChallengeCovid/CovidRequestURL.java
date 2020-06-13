@@ -34,7 +34,7 @@ public class CovidRequestURL {
                 return responseMessage.toString();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+             return "An error occurred while receiving the get response: "+e.getMessage();
         } finally {
             if (conexao != null) {
                 conexao.disconnect();
