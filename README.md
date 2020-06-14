@@ -24,7 +24,7 @@ Feito isso, dê privilégio de execução para o arquivo:<br><br>
       ``` chmod +x {nome do arquivo} ```<br><br>
       
 Para executar o **CLI** abra o terminal e digite:<br><br>
-      ``` {nome do arquivo} country {nome do país} ```<br><br>
+      ``` covid19 country {nome do país} ```<br><br>
 
 ## Referencias usadas:
 https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html
