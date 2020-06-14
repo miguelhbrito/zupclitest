@@ -33,7 +33,7 @@ public class CovidRequestURL {
                 return responseMessage.toString();
             }
         } catch (Exception e) {
-             throw new RuntimeException("An error occurred executing the GET request, message error: "+e.getMessage());
+             throw new RuntimeException("An error occurred executing the GET request.",e);
         } finally {
             if (conexao != null) {
                 conexao.disconnect();

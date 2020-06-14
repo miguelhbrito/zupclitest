@@ -1,12 +1,12 @@
 package com.ZupChallengeCovid;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -22,42 +22,29 @@ public class CovidInfoTest {
             "Mortality       : 100,00(%)";
 
     @Test
-    public void getInfoAboutCovidByCountry_whenIsPassedCountry_returnConstructMessageBody() {
-        CovidInfo covidInfo = new CovidInfo();
-        CovidRequestURL covidRequestURL = mock(CovidRequestURL.class);
-
-        covidInfo.setCovidRequestURL(covidRequestURL);
-
-        when(covidRequestURL.getResponseBodyFromRequestURL(anyString())).thenReturn(JSON_RESPONSE);
+    public void getInfoAboutCovidByCountry_whenIsAnPassedCountry_returnConstructMessageBody() {
+        CovidInfo covidInfo = setup_CovidInfoWithMockCovidRequestURL("brazil", JSON_RESPONSE);
 
         String result = covidInfo.getInfoAboutCovidByCountry("brazil");
-        assertEquals(BODY_RESPONSE, result);
+        assertEquals("Should return constructed message body", BODY_RESPONSE, result);
     }
 
     @Test
     public void getInfoAboutCovidByCountry_whenMessageBodyIsNull_returnMessageBodyNull() {
-        CovidInfo covidInfo = new CovidInfo();
-        CovidRequestURL covidRequestURL = mock(CovidRequestURL.class);
-
-        covidInfo.setCovidRequestURL(covidRequestURL);
-
-        when(covidRequestURL.getResponseBodyFromRequestURL(anyString())).thenReturn(null);
+        CovidInfo covidInfo = setup_CovidInfoWithMockCovidRequestURL("brazil", null);
 
         String result = covidInfo.getInfoAboutCovidByCountry("brazil");
-        assertEquals("Message body is null or didnt contains the right informations that we need !", result);
+        assertEquals("Should return message about null return", "Message body is null or didnt contains the right informations that we need !", result);
     }
 
     @Test
     public void getInfoAboutCovidByCountry_whenMessageBodyIsNotAJson_throwAnException() {
-        CovidInfo covidInfo = new CovidInfo();
-        CovidRequestURL covidRequestURL = mock(CovidRequestURL.class);
-        covidInfo.setCovidRequestURL(covidRequestURL);
-
-        when(covidRequestURL.getResponseBodyFromRequestURL(anyString())).thenReturn("Not a json");
+        CovidInfo covidInfo = setup_CovidInfoWithMockCovidRequestURL("brazil", "Not a json");
 
         try {
             String result = covidInfo.getInfoAboutCovidByCountry("brazil");
-        } catch (ArrayIndexOutOfBoundsException e) {
+            Assert.fail("Should be thrown a RuntimeException");
+        } catch (RuntimeException e) {
             assertEquals("The body receveid is not a JSON type !", e.getMessage());
         }
     }
@@ -84,8 +71,21 @@ public class CovidInfoTest {
 
         try {
             String result = covidInfo.constructReponseBody(createdMap);
-        } catch (NumberFormatException e) {
+            Assert.fail("Should be thrown a RuntimeException");
+        } catch (RuntimeException e) {
             assertEquals("An error occurred trying to convert string to float !For input string: \"\"1234\"\"", e.getMessage());
         }
+    }
+
+    private CovidInfo setup_CovidInfoWithMockCovidRequestURL(String country, String bodyReturn) {
+
+        CovidInfo covidInfo = new CovidInfo();
+        CovidRequestURL covidRequestURL = mock(CovidRequestURL.class);
+
+        covidInfo.setCovidRequestURL(covidRequestURL);
+
+        when(covidRequestURL.getResponseBodyFromRequestURL(country)).thenReturn(bodyReturn);
+
+        return covidInfo;
     }
 }

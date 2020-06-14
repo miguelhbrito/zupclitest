@@ -14,21 +14,21 @@ public class CovidInfo {
         if (messageBody != null && !messageBody.equals("Country not found")) {
 
             try {
-                String[] JSONValues = messageBody.replace("{", "").replace("}", "").split(",");
-                Map<String, String> JSONValuesMap = new HashMap<String, String>();
-                for (String value : JSONValues) {
+                String[] jsonValues = messageBody.replace("{", "").replace("}", "").split(",");
+                Map<String, String> jsonValuesMap = new HashMap<String, String>();
+                for (String value : jsonValues) {
                     String[] temp = value.split(":");
-                    JSONValuesMap.put(temp[0], temp[1]);
+                    jsonValuesMap.put(temp[0], temp[1]);
                 }
 
-                String responseBody = constructReponseBody(JSONValuesMap);
+                String responseBody = constructReponseBody(jsonValuesMap);
 
                 if (responseBody != null) {
                     return responseBody;
                 }
 
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new ArrayIndexOutOfBoundsException("The body receveid is not a JSON type !");
+                throw new RuntimeException("The body receveid is not a JSON type !", e);
             }
         } else if (messageBody != null && messageBody.equals("Country not found")) {
             return "The GET request didnt found any information with the country informed," +
@@ -39,16 +39,16 @@ public class CovidInfo {
         return "Message body is null or didnt contains the right informations that we need !";
     }
 
-    public String constructReponseBody(Map<String, String> JSONValuesMap) {
+    public String constructReponseBody(Map<String, String> jsonValuesMap) {
 
         String responseInfo = null;
 
         try {
-            if (JSONValuesMap.containsKey("\"deaths\"") && JSONValuesMap.containsKey("\"cases\"") && JSONValuesMap.containsKey("\"recovered\"")) {
+            if (jsonValuesMap.containsKey("\"deaths\"") && jsonValuesMap.containsKey("\"cases\"") && jsonValuesMap.containsKey("\"recovered\"")) {
 
-                float deaths = Float.parseFloat(JSONValuesMap.get("\"deaths\""));
-                float cases = Float.parseFloat(JSONValuesMap.get("\"cases\""));
-                int recovered = Integer.parseInt(JSONValuesMap.get("\"recovered\""));
+                float deaths = Float.parseFloat(jsonValuesMap.get("\"deaths\""));
+                float cases = Float.parseFloat(jsonValuesMap.get("\"cases\""));
+                int recovered = Integer.parseInt(jsonValuesMap.get("\"recovered\""));
 
                 responseInfo = "------------------COVID STATS------------------\n" +
                         "Total cases 	: " + (int) cases + "\n" +
@@ -60,7 +60,7 @@ public class CovidInfo {
             return responseInfo;
 
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("An error occurred trying to convert string to float !" + e.getMessage());
+            throw new RuntimeException("An error occurred trying to convert string to float !" + e.getMessage(), e);
         }
     }
 

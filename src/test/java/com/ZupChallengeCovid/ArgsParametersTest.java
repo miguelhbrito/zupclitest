@@ -2,7 +2,7 @@ package com.ZupChallengeCovid;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ArgsParametersTest {
 
@@ -11,7 +11,7 @@ public class ArgsParametersTest {
         ArgsParameters argsParameters = new ArgsParameters();
 
         String result = argsParameters.processPassedArgs(new String[]{"test"});
-        assertEquals("", result);
+        assertEquals("Should return a empty string","", result);
     }
 
     @Test
@@ -19,7 +19,7 @@ public class ArgsParametersTest {
         ArgsParameters argsParameters = new ArgsParameters();
 
         String result = argsParameters.processPassedArgs(new String[]{"country"});
-        assertEquals("", result);
+        assertEquals("Should return a empty string","", result);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ArgsParametersTest {
         ArgsParameters argsParameters = new ArgsParameters();
 
         String result = argsParameters.processPassedArgs(new String[]{"country","country"});
-        assertEquals("", result);
+        assertEquals("Should return a empty string","", result);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ArgsParametersTest {
         ArgsParameters argsParameters = new ArgsParameters();
 
         String result = argsParameters.processPassedArgs(new String[]{"country","brazil","country"});
-        assertEquals(null, result);
+        assertEquals("Should return null",null, result);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class ArgsParametersTest {
         ArgsParameters argsParameters = new ArgsParameters();
 
         String result = argsParameters.processPassedArgs(new String[]{"country","brazil"});
-        assertEquals("brazil", result);
+        assertEquals("Country is different than brazil","brazil", result);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class ArgsParametersTest {
         ArgsParameters argsParameters = new ArgsParameters();
 
         String result = argsParameters.processPassedArgs(new String[]{"country","Saudi","Arabia"});
-        assertEquals("Saudi Arabia", result);
+        assertEquals("Country is different than Saudi Arabia","Saudi Arabia", result);
     }
 }

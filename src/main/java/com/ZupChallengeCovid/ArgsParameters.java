@@ -12,9 +12,9 @@ public class ArgsParameters {
                 countCountry += 1;
                 i += 1;
             }
-            if (i > 1 && i < args.length && !"country".equals(args[i])) {
+            if (isASecondOrMoreCountryName(args, i)) {
                 concatenatedArgs.append(" " + args[i]);
-            } else if (i < args.length && !"country".equals(args[i]) && countCountry > 0) {
+            } else if (isAFirstCountryName(args, countCountry, i)) {
                 concatenatedArgs.append(args[i]);
             }
         }
@@ -23,5 +23,13 @@ public class ArgsParameters {
             return null;
         }
         return concatenatedArgs.toString();
+    }
+
+    public boolean isAFirstCountryName(String[] args, int countCountry, int i) {
+        return (i < args.length && !"country".equals(args[i]) && countCountry > 0);
+    }
+
+    public boolean isASecondOrMoreCountryName(String[] args, int i) {
+        return (i > 1 && i < args.length && !"country".equals(args[i]));
     }
 }

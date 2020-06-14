@@ -25,9 +25,8 @@ public class CLIApp {
                 }
             }
             return HELP_MESSAGE;
-        } else {
-            return HELP_MESSAGE;
         }
+        return HELP_MESSAGE;
     }
 
     protected void setArgsParameters(ArgsParameters argsParameters) {
