@@ -37,6 +37,10 @@ https://www.urlencoder.io/java/
 
 https://www.javatpoint.com/URL-class
 
+https://stackoverflow.com/questions/6115896/understanding-checked-vs-unchecked-exceptions-in-java
+
+https://claritysoftware.co.uk/mocking-javas-url-with-mockito/
+
 https://github.com/javieraviles/covidAPI
 
 https://dzone.com/articles/naming-conventions-from-uncle-bobs-clean-code-phil
