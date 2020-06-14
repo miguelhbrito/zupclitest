@@ -27,17 +27,17 @@ Para executar o **CLI** abra o terminal e digite:<br><br>
       ``` {nome do arquivo} country {nome do país} ```<br><br>
 
 ## Referencias usadas:
-*https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html
+https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html
 
-*https://docs.oracle.com/javase/8/docs/api/java/net/URLEncoder.html
+https://docs.oracle.com/javase/8/docs/api/java/net/URLEncoder.html
 
-*https://stackoverflow.com/questions/2678551/when-to-encode-space-to-plus-or-20
+https://stackoverflow.com/questions/2678551/when-to-encode-space-to-plus-or-20
 
-*https://www.urlencoder.io/java/
+https://www.urlencoder.io/java/
 
-*https://www.javatpoint.com/URL-class
+https://www.javatpoint.com/URL-class
 
-*https://github.com/javieraviles/covidAPI
+https://github.com/javieraviles/covidAPI
 
-*https://dzone.com/articles/naming-conventions-from-uncle-bobs-clean-code-phil
+https://dzone.com/articles/naming-conventions-from-uncle-bobs-clean-code-phil
 
