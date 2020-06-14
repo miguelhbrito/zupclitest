@@ -19,6 +19,9 @@ public class ArgsParameters {
             }
         }
 
+        if(countCountry > 1){
+            return null;
+        }
         return concatenatedArgs.toString();
     }
 }

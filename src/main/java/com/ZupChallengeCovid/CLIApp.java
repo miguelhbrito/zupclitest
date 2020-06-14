@@ -1,7 +1,5 @@
 package com.ZupChallengeCovid;
 
-import java.io.IOException;
-
 public class CLIApp {
 
     public final String HELP_MESSAGE = "To use the CLI program type \"covid19 country {country name}\"";
@@ -10,7 +8,7 @@ public class CLIApp {
 
     CovidInfo covidInfo = new CovidInfo();
 
-    public String runCLI(String[] args) throws IOException {
+    public String runCLI(String[] args) {
         String country;
 
         if (args.length > 0) {
@@ -32,11 +30,11 @@ public class CLIApp {
         }
     }
 
-    public void setArgsParameters(ArgsParameters argsParameters) {
+    protected void setArgsParameters(ArgsParameters argsParameters) {
         this.argsParameters = argsParameters;
     }
 
-    public void setCovidInfo(CovidInfo covidInfo) {
+    protected void setCovidInfo(CovidInfo covidInfo) {
         this.covidInfo = covidInfo;
     }
 

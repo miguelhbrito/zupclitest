@@ -2,8 +2,6 @@ package com.ZupChallengeCovid;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -13,7 +11,7 @@ public class CLIAppTest {
     public final String HELP_MESSAGE = "To use the CLI program type \"covid19 country {country name}\"";
 
     @Test
-    public void runCLI_whenPassedHelpAsArgs_returnHelpMessage() throws IOException {
+    public void runCLI_whenPassedHelpAsArgs_returnHelpMessage() {
         CLIApp cliApp = new CLIApp();
         String result = cliApp.runCLI(new String[]{"help"});
 
@@ -21,7 +19,7 @@ public class CLIAppTest {
     }
 
     @Test
-    public void runCLI_whenPassedLessThanZeroArgs_returnHelpMessage() throws IOException {
+    public void runCLI_whenPassedLessThanZeroArgs_returnHelpMessage() {
         CLIApp cliApp = new CLIApp();
         String result = cliApp.runCLI(new String[]{});
 
@@ -29,7 +27,7 @@ public class CLIAppTest {
     }
 
     @Test
-    public void runCLI_whenPassedMoreThanTwoArgsWithoutCountryWordMethodReturnNull_returnHelpMessage() throws IOException {
+    public void runCLI_whenPassedMoreThanTwoArgsWithoutCountryWordMethodReturnNull_returnHelpMessage() {
         CLIApp cliApp = new CLIApp();
 
         ArgsParameters argsParameters = mock(ArgsParameters.class);
@@ -42,7 +40,7 @@ public class CLIAppTest {
     }
 
     @Test
-    public void runCLI_whenPassedMoreThanTwoArgsWithoutCountryWordReturnEmptyString_returnHelpMessage() throws IOException {
+    public void runCLI_whenPassedMoreThanTwoArgsWithoutCountryWordReturnEmptyString_returnHelpMessage() {
         CLIApp cliApp = new CLIApp();
 
         ArgsParameters argsParameters = mock(ArgsParameters.class);
@@ -55,7 +53,7 @@ public class CLIAppTest {
     }
 
     @Test
-    public void runCLI_whenPassedMoreThanTwoArgsWithCountryWord_returnInfoFromCountry() throws IOException {
+    public void runCLI_whenPassedMoreThanTwoArgsWithCountryWord_returnInfoFromCountry() {
         CLIApp cliApp = new CLIApp();
 
         ArgsParameters argsParameters = mock(ArgsParameters.class);

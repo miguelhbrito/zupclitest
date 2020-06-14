@@ -2,20 +2,31 @@ package com.ZupChallengeCovid;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 public class CovidRequestURLTest {
 
-    //@Test
-    public void getResponseBodyFromRequestURL_whenIsPassedCountry_returnResponseBody() {
-        CovidRequestURL covidRequestURL =  new CovidRequestURL();
-        HttpURLConnection httpURLConnection = mock(HttpURLConnection.class);
+    @Test
+    public void getResponseBodyFromRequestURL_whenURLDoesntWork_returnThrowException() {
+        CovidRequestURL covidRequestURL = new CovidRequestURL();
+        covidRequestURL.setURL_COVID19_API("test url connection");
 
-        String result = covidRequestURL.getResponseBodyFromRequestURL("brazil");
-        assertEquals("", result);
+        try {
+            String result = covidRequestURL.getResponseBodyFromRequestURL("");
+        } catch (Exception e) {
+            assertEquals("An error occurred executing the GET request, message error: no protocol: test url connection", e.getMessage());
+        }
     }
+
+    @Test
+    public void getResponseBodyFromRequestURL_whenPassedNotACountry_returnNotFoundMessage() {
+        CovidRequestURL covidRequestURL = new CovidRequestURL();
+
+        try {
+            String result = covidRequestURL.getResponseBodyFromRequestURL("Not a country");
+        } catch (Exception e) {
+            assertEquals("Country not found", e.getMessage());
+        }
+    }
+
 }

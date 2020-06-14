@@ -1,7 +1,6 @@
 package com.ZupChallengeCovid;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,9 +10,9 @@ public class CovidRequestURL {
 
     public String URL_COVID19_API = "https://coronavirus-19-api.herokuapp.com/countries/";
 
-    public String getResponseBodyFromRequestURL(String country) {
+    HttpURLConnection conexao = null;
 
-        HttpURLConnection conexao = null;
+    public String getResponseBodyFromRequestURL(String country) {
 
         try {
             URL url = new URL(URL_COVID19_API + URLEncoder.encode(country, "UTF-8").replace("+", "%20"));
@@ -33,13 +32,17 @@ public class CovidRequestURL {
 
                 return responseMessage.toString();
             }
-        } catch (IOException e) {
-             return "An error occurred while receiving the get response: "+e.getMessage();
+        } catch (Exception e) {
+             throw new RuntimeException("An error occurred executing the GET request, message error: "+e.getMessage());
         } finally {
             if (conexao != null) {
                 conexao.disconnect();
             }
         }
         return "The GET request failed, response code received is different than 200.\n";
+    }
+
+    protected void setURL_COVID19_API(String URL_COVID19_API) {
+        this.URL_COVID19_API = URL_COVID19_API;
     }
 }

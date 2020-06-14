@@ -1,9 +1,7 @@
 package com.ZupChallengeCovid;
 
-import java.io.IOException;
-
 public class ZupChallengeApplication {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         CLIApp cliApp = new CLIApp();
         System.out.println(cliApp.runCLI(args));
     }

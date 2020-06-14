@@ -55,16 +55,15 @@ public class CovidInfoTest {
 
         when(covidRequestURL.getResponseBodyFromRequestURL(anyString())).thenReturn("Not a json");
 
-        String result = null;
         try {
-            result = covidInfo.getInfoAboutCovidByCountry("brazil");
+            String result = covidInfo.getInfoAboutCovidByCountry("brazil");
         } catch (ArrayIndexOutOfBoundsException e) {
             assertEquals("The body receveid is not a JSON type !", e.getMessage());
         }
     }
 
     @Test
-    public void constructReponseBody_whenIsNotPassedAMap_returnReponseBodyNull() {
+    public void constructReponseBody_whenIsNotPassedAFilledMap_returnReponseBodyNull() {
         CovidInfo covidInfo = spy(CovidInfo.class);
 
         Map<String, String> createdMap = new HashMap<>();
@@ -75,7 +74,7 @@ public class CovidInfoTest {
     }
 
     @Test
-    public void constructReponseBody_whenIsPassedAMapWithoutNumbers_throwAnException() {
+    public void constructReponseBody_whenIsPassedAMapWithoutStringFormat_throwAnException() {
         CovidInfo covidInfo = spy(CovidInfo.class);
 
         Map<String, String> createdMap = new HashMap<>();
@@ -83,12 +82,10 @@ public class CovidInfoTest {
         createdMap.put("\"deaths\"", "\"1234\"");
         createdMap.put("\"recovered\"", "\"1234\"");
 
-        String result = null;
-
         try {
-            result = covidInfo.constructReponseBody(createdMap);
+            String result = covidInfo.constructReponseBody(createdMap);
         } catch (NumberFormatException e) {
-            assertEquals("Info received from API is not integer numbers !", e.getMessage());
+            assertEquals("An error occurred trying to convert string to float !For input string: \"\"1234\"\"", e.getMessage());
         }
     }
 }

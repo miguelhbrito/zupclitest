@@ -60,7 +60,7 @@ public class CovidInfo {
             return responseInfo;
 
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Info received from API is not integer numbers !");
+            throw new NumberFormatException("An error occurred trying to convert string to float !" + e.getMessage());
         }
     }
 
@@ -68,7 +68,7 @@ public class CovidInfo {
         return obtido * 100 / total;
     }
 
-    public void setCovidRequestURL(CovidRequestURL covidRequestURL) {
+    protected void setCovidRequestURL(CovidRequestURL covidRequestURL) {
         this.covidRequestURL = covidRequestURL;
     }
 

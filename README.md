@@ -16,7 +16,7 @@ colaboradores possam filtrar dados da COVID-19 por país, utilizando o terminal 
 
 Faça o download do projeto e compile o projeto:<br><br>
       ```mvn clean install``` <br><br>
-Após compilado, crie um arquivo no diretorio */usr/local/bin/* com o conteúdo:<br><br>
+Após compilado, crie um arquivo com o nome *covid19* no diretorio */usr/local/bin/* com o conteúdo:<br><br>
       ```#!/bin/bash
       java -jar {diretorio aonde esta o projeto}/zupTesteJava/target/zupTesteJava-1.jar $@``` <br> <br>
       

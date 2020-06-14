@@ -31,11 +31,11 @@ public class ArgsParametersTest {
     }
 
     @Test
-    public void processPassedArgs_whenIsPassedThreeCountryAsArgs_returnEmptyString() {
+    public void processPassedArgs_whenIsPassedTwoCountryInDifferentPositionsAsArgs_returnEmptyString() {
         ArgsParameters argsParameters = new ArgsParameters();
 
-        String result = argsParameters.processPassedArgs(new String[]{"country","country","country"});
-        assertEquals("", result);
+        String result = argsParameters.processPassedArgs(new String[]{"country","brazil","country"});
+        assertEquals(null, result);
     }
 
     @Test
