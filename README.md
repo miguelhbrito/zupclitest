@@ -12,7 +12,7 @@ colaboradores possam filtrar dados da COVID-19 por país, utilizando o terminal 
 * recovered: int
 * mortality_rate: int (​ % ​ )
 
-## Getting Started
+## Build e Execução
 
 Faça o download do projeto e compile o projeto:<br><br>
       ```mvn clean install``` <br><br>
